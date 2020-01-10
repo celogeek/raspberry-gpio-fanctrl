@@ -1,0 +1,18 @@
+post_install()
+{
+	echo "To start fanctrl, run: systemctl start fanctrl"
+	echo "To enable fanctrl at boot, run: systemctl enable fanctrl"
+}
+
+post_upgrade()
+{
+	systemctl daemon-reload
+}
+
+pre_remove()
+{
+	systemctl stop fanctrl
+	systemctl disable fanctrl
+}
+
+

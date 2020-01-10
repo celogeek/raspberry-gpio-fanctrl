@@ -1,0 +1,12 @@
+[Unit]
+Description=PWM Fan Control
+
+[Service]
+Type=simple
+ExecStart=/usr/lib/raspberry-gpio-fanctrl/bin/fanctrl
+Restart=always
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
+
