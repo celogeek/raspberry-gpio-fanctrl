@@ -13,8 +13,8 @@ WAIT_TIME=5
 HISTERY=1
 
 STOP_TEMP=50.0
-MIN_TEMP=60.0
-STOP_TEMP=45.0
+MIN_TEMP=55.0
+MAX_TEMP=70.0
 
 MIN_FAN=25.0
 MAX_FAN=100.0
@@ -71,8 +71,8 @@ signal.signal(signal.SIGTERM, handle_signal)
 
 fan = init()
 
-last_temp=0
-last_p=0
+last_temp=0.0
+last_p=0.0
 try:
     while True:
         wait()
@@ -83,7 +83,7 @@ try:
 
         last_temp = temp
 
-        print("TEMP={:.2f}".format(temp))
+        print("TEMP={:.2f}, SPEED={:.0f}%".format(temp,last_p))
 
         if last_p == 0 and temp < MIN_TEMP:
             continue
@@ -96,6 +96,10 @@ try:
         elif abs(last_p - p) > HISTERY:
             last_p = p
             set(fan, p)
+
+except:
+    print("Unexpected error:", sys.exc_info())
+    raise
         
 finally:
     cleanup()
