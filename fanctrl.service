@@ -3,7 +3,7 @@ Description=PWM Fan Control
 
 [Service]
 Type=simple
-ExecStart=/usr/lib/raspberry-gpio-fanctrl/bin/fanctrl
+ExecStart=/usr/bin/python /usr/lib/raspberry-gpio-fanctrl/bin/fanctrl.py
 Restart=always
 Environment=PYTHONUNBUFFERED=1
 
