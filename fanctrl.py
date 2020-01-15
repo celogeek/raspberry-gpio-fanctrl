@@ -12,8 +12,8 @@ PWM_FREQ = 25
 WAIT_TIME=5
 HISTERY=1
 
-STOP_TEMP=50.0
-MIN_TEMP=55.0
+STOP_TEMP=45.0
+MIN_TEMP=52.0
 MAX_TEMP=60.0
 
 MIN_FAN=25.0
@@ -45,9 +45,7 @@ def wait():
     time.sleep(WAIT_TIME)
 
 def set(fan, pf):
-    p=int(pf)
-    print("  => FAN {:d}".format(p))
-    fan.ChangeDutyCycle(p)
+    fan.ChangeDutyCycle(int(pf))
 
 def get_p(temp):
     if temp <= STOP_TEMP:
@@ -78,12 +76,12 @@ try:
         wait()
         temp=get_temp()
 
+        print("TEMP={:.2f}, SPEED={:.0f}%".format(temp,last_p))
+
         if abs(last_temp - temp) < HISTERY:
             continue
 
         last_temp = temp
-
-        print("TEMP={:.2f}, SPEED={:.0f}%".format(temp,last_p))
 
         if last_p == 0 and temp < MIN_TEMP:
             continue

@@ -1,5 +1,5 @@
 pkgname=raspberry-gpio-fanctrl
-pkgver=20200114
+pkgver=20200115
 pkgrel=1
 pkgdesc="control fan connect on gpio based on raspberry temperature"
 arch=(armv6h armv7h aarch64)
@@ -8,7 +8,7 @@ source=(
 	fanctrl.py
 	fanctrl.service
 )
-sha256sums=('0585fdd7e2a6bb56046dfc010daaa743c0f89e1de6d5dd305e1552211a57c3fb'
+sha256sums=('1ce7d1e30042c36cd67a43f40921b8b3b4dc17e699d7394d429a1ec45e1a2e8b'
             '1a66d880f18abe5e452abaf36438dde79ce362f844455af8e36991c2d457c810')
 install=fanctrl.install
 
