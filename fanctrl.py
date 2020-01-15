@@ -57,7 +57,7 @@ def get_p(temp):
             MIN_FAN,
             min(
                 MAX_FAN,
-                MIN_FAN + STEP * (temp - MIN_TEMP)
+                MIN_FAN + STEP * (temp - STOP_TEMP)
                 )
             )
 
@@ -75,7 +75,6 @@ try:
     while True:
         wait()
         temp=get_temp()
-
         print("TEMP={:.2f}, SPEED={:.0f}%".format(temp,last_p))
 
         if abs(last_temp - temp) < HISTERY:
@@ -91,9 +90,11 @@ try:
         if last_p == 0 and p > 0:
             last_p = START_FAN
             set(fan, START_FAN)
-        elif abs(last_p - p) > HISTERY:
+        elif(int(last_p) != int(p)):
             last_p = p
             set(fan, p)
+
+        print("TEMP={:.2f}, SPEED={:.0f}%".format(temp,last_p))
 
 except:
     print("Unexpected error:", sys.exc_info())
